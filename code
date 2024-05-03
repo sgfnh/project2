@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="handle(event)">
+        <h2 align="center">Class Moniter Vote</h2>
+        <p align="center">Total Votes 0</p>
+        <label for="nam">Student Name:</label>
+        <input type="text" id="nam" name="nam">
+        <label for="mem">Class Member:</label>
+        <select name="mem" id="mem">
+            <option>Suresh</option>
+            <option>Deepank</option>
+            <option>Abhik</option>
+        </select>
+        <button>Vote</button>
+        <br>
+        <br>
+        <br>
+        <h2 id="hea">Suresh</h2>
+        <p>Total 0</p>
+        <br>
+        <br>
+        
+        <h2 id="he">Deepank</h2>
+        <p>Total 0</p>
+        <br>
+        <br>
+        
+        <h2 id="jk">Abhik</h2>
+        <p>Total 0</p>
+    </form>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js"></script>
+<script>
+function handle(event){
+    event.preventDefault()
+    const user={
+        "uname":event.target.nam.value,
+        "member":event.target.mem.value
+    }
+    axios.post("https://crudcrud.com/api/a8e555c22d574eb2b25fa0113cdf6dce/rating",user)
+    .then((res)=>
+    console.log(res))
+    .catch((err)=>
+    console.log(err))
+    Showscr(user)
+}
+function showscr(user){
+    const yu=document.getElementById('hea');
+    const ui=document.getElementById('he');
+    const io=document.getElementById('jk')
+    const ki=document.createElement('p')
+    ki.textContent=user.member
+    if (user.member=="Suresh"){
+        yu.appendChild(ki)
+    }else if (user.member=="Deepank"){
+        ui.appendChild(ki)
+    }else {
+        io.appendChild(ki)
+
+    }
+    
+    
+    
+
+    
+}
+</script>
+</html>
